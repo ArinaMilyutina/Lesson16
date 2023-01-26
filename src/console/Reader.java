@@ -1,7 +1,7 @@
 package console;
 
 public interface Reader {
-    public double readDouble();
+    double readDouble();
 
-    public String readString();
+    String readString();
 }

@@ -1,5 +1,5 @@
 package helpers;
 
 public interface Helpers {
-    public void consoleMenuHelper();
+    void consoleMenuHelper();
 }
