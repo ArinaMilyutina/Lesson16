@@ -1,7 +1,10 @@
+package console;
+
 import java.util.Scanner;
 
-public class ConsoleReader implements Reade {
-    Scanner scan =new Scanner(System.in);
+public class ConsoleReader implements Reader {
+    Scanner scan = new Scanner(System.in);
+
     @Override
     public double readDouble() {
         return scan.nextDouble();

@@ -1,3 +1,7 @@
+package service;
+
+import operation.Operation;
+
 public class Calculator {
     public Operation calculate(Operation operation) {
         switch (operation.getOperationNumber()) {
@@ -20,24 +24,25 @@ public class Calculator {
             }
         }
         return null;
+
     }
 
-    public static double sum(double a, double b) {
+    public double sum(double a, double b) {
         return a + b;
     }
 
-    public static double div(double a, double b) {
-        return a / b;
 
-    }
-
-    public static double mul(double a, double b) {
-
-        return a * b;
-    }
-
-    public static double res(double a, double b) {
+    public double res(double a, double b) {
         return a - b;
     }
 
+
+    public double div(double a, double b) {
+        return a / b;
+    }
+
+
+    public double mul(double a, double b) {
+        return a * b;
+    }
 }
