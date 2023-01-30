@@ -29,27 +29,33 @@ public class ConsoleApplication implements Application {
             fileOperationStorage.checkFile();
             writer.writer("1.Calculator\n2.Reading from a file\n3.Reading from a List\n4.Exit");
             String number1 = reader.readString();
-            if (number1.equals("1")) {
-                writer.writer("Enter the first number:");
-                double n1 = reader.readDouble();
-                writer.writer("Enter the second number:");
-                double n2 = reader.readDouble();
-                helpers.consoleMenuHelper();
-                String operation = reader.readString();
-                Operation operations = new Operation(n1, n2, operation);
-                Operation result = calculator.calculate(operations);
-                writer.writer(result.toString());
+            switch (number1) {
+                case "1": {
+                    writer.writer("Enter the first number:");
+                    double n1 = reader.readDouble();
+                    writer.writer("Enter the second number:");
+                    double n2 = reader.readDouble();
+                    helpers.consoleMenuHelper();
+                    String operation = reader.readString();
+                    Operation operations = new Operation(n1, n2, operation);
+                    Operation result = calculator.calculate(operations);
+                    writer.writer(result.toString());
 
-            } else if (number1.equals("2")) {
-                fileOperationStorage.readFromFile();
+                    break;
+                }
+                case "2":
+                    fileOperationStorage.readFromFile();
 
-            } else if (number1.equals("3")) {
+                    break;
+                case "3": {
 
-                List<Operation> operations = calculator.showHistoryList();
-                operations.forEach((operation) -> writer.writer(operation.toString()));
+                    List<Operation> operations = calculator.showHistoryList();
+                    operations.forEach((operation) -> writer.writer(operation.toString()));
 
-            } else if (number1.equals("4")) {
-                return;
+                    break;
+                }
+                case "4":
+                    return;
             }
 
 
