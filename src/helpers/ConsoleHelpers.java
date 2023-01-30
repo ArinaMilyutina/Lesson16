@@ -1,10 +1,12 @@
 package helpers;
 
-import console.ConsoleWriter;
-import console.Writer;
+
+import console.util.ConsoleWriter;
+import console.util.Writer;
 
 public class ConsoleHelpers implements Helpers {
     Writer write = new ConsoleWriter();
+
 
     @Override
     public void consoleMenuHelper() {

@@ -1,4 +1,5 @@
-package console;
+package console.util;
+
 
 public class ConsoleWriter implements Writer {
     @Override

@@ -1,12 +1,13 @@
 package storage;
 
-import console.ConsoleWriter;
-import console.Writer;
-import operation.Operation;
+
+import console.util.ConsoleWriter;
+import console.util.Writer;
+import entity.Operation;
 
 import java.io.*;
 
-public class FileOperationStorage {
+public class FileOperationStorage implements OperationStorageFile {
     private final Writer writer = new ConsoleWriter();
 
     public void checkFile() {
@@ -20,10 +21,10 @@ public class FileOperationStorage {
         }
     }
 
-    public void writeFromFile(Operation result) {
+    public void saveFile(Operation operation) {
         try {
             FileWriter fileWriter = new FileWriter("storage.txt", true);
-            fileWriter.write(result.toString());
+            fileWriter.write(operation.toString() + "\n");
             fileWriter.flush();
         } catch (IOException e) {
             throw new RuntimeException(e);

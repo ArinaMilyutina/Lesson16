@@ -1,16 +1,24 @@
 package console;
 
+import console.util.ConsoleReader;
+import console.util.ConsoleWriter;
+import console.util.Reader;
+import console.util.Writer;
 import helpers.ConsoleHelpers;
 import service.CalculatorService;
 import helpers.Helpers;
-import operation.Operation;
+import entity.Operation;
 import storage.FileOperationStorage;
+
+
+import java.util.List;
+
 
 public class ConsoleApplication implements Application {
 
     private final Writer writer = new ConsoleWriter();
     private final Reader reader = new ConsoleReader();
-    private final Helpers menu = new ConsoleHelpers();
+    private final Helpers helpers = new ConsoleHelpers();
     private final CalculatorService calculator = new CalculatorService();
     private final FileOperationStorage fileOperationStorage = new FileOperationStorage();
 
@@ -19,25 +27,28 @@ public class ConsoleApplication implements Application {
 
         while (true) {
             fileOperationStorage.checkFile();
-            writer.writer("1.Calculator\n2.Reading from a file\n3.Exit");
-            String number = reader.readString();
-            if (number.equals("1")) {
+            writer.writer("1.Calculator\n2.Reading from a file\n3.Reading from a List\n4.Exit");
+            String number1 = reader.readString();
+            if (number1.equals("1")) {
                 writer.writer("Enter the first number:");
                 double n1 = reader.readDouble();
                 writer.writer("Enter the second number:");
                 double n2 = reader.readDouble();
-                menu.consoleMenuHelper();
+                helpers.consoleMenuHelper();
                 String operation = reader.readString();
                 Operation operations = new Operation(n1, n2, operation);
                 Operation result = calculator.calculate(operations);
-                fileOperationStorage.writeFromFile(result);
-                writer.writer("Result:\n" + n1 + " + " + n2 + " = " + operations.getResult());
+                writer.writer(result.toString());
 
-
-            } else if (number.equals("2")) {
+            } else if (number1.equals("2")) {
                 fileOperationStorage.readFromFile();
 
-            } else if (number.equals("3")) {
+            } else if (number1.equals("3")) {
+
+                List<Operation> operations = calculator.showHistoryList();
+                operations.forEach((operation) -> writer.writer(operation.toString()));
+
+            } else if (number1.equals("4")) {
                 return;
             }
 

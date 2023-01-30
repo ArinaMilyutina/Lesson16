@@ -1,4 +1,5 @@
-package console;
+package console.util;
+
 
 import java.util.Scanner;
 
@@ -14,4 +15,6 @@ public class ConsoleReader implements Reader {
     public String readString() {
         return scan.next();
     }
+
+
 }
