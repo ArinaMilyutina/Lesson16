@@ -1,9 +1,9 @@
 package operation;
 
 public class Operation {
-    private final double number1;
-    private final double number2;
-    private final String operationNumber;
+    private  double number1;
+    private  double number2;
+    private  String operationNumber;
     private double result;
 
     public Operation(double n1, double n2, String operation) {
@@ -12,6 +12,9 @@ public class Operation {
         this.operationNumber = operation;
     }
 
+     public Operation(){
+
+     }
     public double getNumber1() {
         return number1;
     }

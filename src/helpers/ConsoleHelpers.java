@@ -4,15 +4,16 @@ import console.ConsoleWriter;
 import console.Writer;
 
 public class ConsoleHelpers implements Helpers {
-    Writer writer = new ConsoleWriter();
+    Writer write = new ConsoleWriter();
 
     @Override
     public void consoleMenuHelper() {
-        writer.writer("Enter the operation number:");
-        writer.writer("1-Addition.");
-        writer.writer("2-Division.");
-        writer.writer("3-Multiplication.");
-        writer.writer("4-Subtraction.");
+        write.writer("Enter the operation number:");
+        write.writer("1-Addition.");
+        write.writer("2-Division.");
+        write.writer("3-Multiplication.");
+        write.writer("4-Subtraction.");
     }
+
 
 }
