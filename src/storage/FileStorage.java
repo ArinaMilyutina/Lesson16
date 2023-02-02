@@ -4,10 +4,11 @@ package storage;
 import console.util.ConsoleWriter;
 import console.util.Writer;
 import entity.Operation;
+import entity.User;
 
 import java.io.*;
 
-public class FileOperationStorage implements OperationStorageFile {
+public class FileStorage implements OperationStorage, UserStorage {
     private final Writer writer = new ConsoleWriter();
 
     public void checkFile() {
@@ -21,7 +22,8 @@ public class FileOperationStorage implements OperationStorageFile {
         }
     }
 
-    public void saveFile(Operation operation) {
+    @Override
+    public void saveOperation(Operation operation) {
         try {
             FileWriter fileWriter = new FileWriter("storage.txt", true);
             fileWriter.write(operation.toString() + "\n");
@@ -43,6 +45,16 @@ public class FileOperationStorage implements OperationStorageFile {
         }
     }
 
+    @Override
+    public void saveUser(User user) {
+        try {
+            FileWriter fileWriter = new FileWriter("storage.txt", true);
+            fileWriter.write(user.toString() + "\n");
+            fileWriter.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 
 

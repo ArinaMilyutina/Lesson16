@@ -1,46 +1,46 @@
 package service;
 
 import entity.Operation;
-import storage.FileOperationStorage;
+import storage.FileStorage;
 import storage.InMemoryOperationStorage;
-import storage.OperationStorageFile;
-import storage.OperationStorageList;
+import storage.OperationStorage;
 
 import java.util.List;
+import java.util.Optional;
 
 public class CalculatorService {
-    private final OperationStorageList storageList = new InMemoryOperationStorage();
-    private final OperationStorageFile storageFile = new FileOperationStorage();
+    private final InMemoryOperationStorage storageList = new InMemoryOperationStorage();
+    private final OperationStorage storageFile = new FileStorage();
 
-    public Operation calculate(Operation operation) {
+    public Optional<Operation> calculate(Operation operation) {
         switch (operation.getOperationNumber()) {
             case "1" -> {
                 operation.setResult(sum(operation.getNumber1(), operation.getNumber2()));
-                storageList.saveList(operation);
-                storageFile.saveFile(operation);
-                return operation;
+                storageList.saveOperation(operation);
+                storageFile.saveOperation(operation);
+                return Optional.of(operation);
 
             }
             case "2" -> {
                 operation.setResult(div(operation.getNumber1(), operation.getNumber2()));
-                storageList.saveList(operation);
-                storageFile.saveFile(operation);
-                return operation;
+                storageList.saveOperation(operation);
+                storageFile.saveOperation(operation);
+                return Optional.of(operation);
             }
             case "3" -> {
                 operation.setResult(mul(operation.getNumber1(), operation.getNumber2()));
-                storageList.saveList(operation);
-                storageFile.saveFile(operation);
-                return operation;
+                storageList.saveOperation(operation);
+                storageFile.saveOperation(operation);
+                return Optional.of(operation);
             }
             case "4" -> {
                 operation.setResult(res(operation.getNumber1(), operation.getNumber2()));
-                storageList.saveList(operation);
-                storageFile.saveFile(operation);
-                return operation;
+                storageList.saveOperation(operation);
+                storageFile.saveOperation(operation);
+                return Optional.of(operation);
             }
         }
-        return null;
+        return Optional.empty();
 
     }
 
@@ -63,7 +63,7 @@ public class CalculatorService {
         return a * b;
     }
 
-    public List<Operation> showHistoryList() {
+    public List<Operation> showOperation() {
         return storageList.findAll();
     }
 }

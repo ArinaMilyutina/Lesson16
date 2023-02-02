@@ -1,0 +1,3 @@
+User{username='Arii', password='12345678', name='Arina', id='1}
+Operation{number1=1.0, number2=2.0, result=3.0, id=1}
+Operation{number1=12.0, number2=13.0, result=0.9230769230769231, id=2}

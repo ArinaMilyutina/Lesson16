@@ -6,4 +6,8 @@ public class ConsoleWriter implements Writer {
     public void writer(String msg) {
         System.out.println(msg);
     }
+
+    public void writerError(String msg) {
+        System.err.println(msg);
+    }
 }
