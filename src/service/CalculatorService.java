@@ -6,7 +6,6 @@ import storage.InMemoryOperationStorage;
 import storage.OperationStorage;
 
 import java.util.List;
-import java.io.Externalizable;
 import java.util.Optional;
 
 public class CalculatorService {
