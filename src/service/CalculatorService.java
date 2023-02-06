@@ -19,7 +19,6 @@ public class CalculatorService {
                 storageList.saveOperation(operation);
                 storageFile.saveOperation(operation);
                 return Optional.of(operation);
-
             }
             case "2" -> {
                 operation.setResult(div(operation.getNumber1(), operation.getNumber2()));

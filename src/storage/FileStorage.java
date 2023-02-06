@@ -24,37 +24,57 @@ public class FileStorage implements OperationStorage, UserStorage {
 
     @Override
     public void saveOperation(Operation operation) {
-        try {
-            FileWriter fileWriter = new FileWriter("storage.txt", true);
-            fileWriter.write(operation.toString() + "\n");
-            fileWriter.flush();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Runnable runnable = () -> {
+            try {
+                FileWriter fileWriter = new FileWriter("storage.txt", true);
+                fileWriter.write(operation.toString() + "\n");
+                fileWriter.flush();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        };
+        Thread thread = new Thread(runnable);
+
+        thread.start();
+
     }
 
     public void readFromFile() {
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("storage.txt"));
-            String s;
-            while ((s = bufferedReader.readLine()) != null) {
-                writer.writer(s);
+        Runnable runnable = () -> {
+            try {
+                BufferedReader bufferedReader = new BufferedReader(new FileReader("storage.txt"));
+                String s;
+                while ((s = bufferedReader.readLine()) != null) {
+                    writer.writer(s);
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        };
+        Thread thread = new Thread(runnable);
+        thread.start();
     }
+
 
     @Override
     public void saveUser(User user) {
-        try {
-            FileWriter fileWriter = new FileWriter("storage.txt", true);
-            fileWriter.write(user.toString() + "\n");
-            fileWriter.flush();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Runnable runnable = () -> {
+            try {
+
+                FileWriter fileWriter = new FileWriter("storage.txt", true);
+                Thread.sleep(1000);
+                fileWriter.write(user.toString() + "\n");
+                fileWriter.flush();
+            } catch (IOException | InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        };
+
+        Thread thread = new Thread(runnable);
+
+        thread.start();
     }
 }
+
 
 
