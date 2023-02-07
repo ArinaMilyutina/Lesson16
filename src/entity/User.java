@@ -1,6 +1,7 @@
 package entity;
 
-public class User extends AbstractEntity {
+public class User {
+    private int id;
     private String username;
     private String password;
     private String name;
@@ -11,14 +12,12 @@ public class User extends AbstractEntity {
         this.name = name;
     }
 
-    @Override
-    public long getId() {
-        return super.getId();
+    public int getId() {
+        return id;
     }
 
-    @Override
-    public void setId(long id) {
-        super.setId(id);
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -51,6 +50,6 @@ public class User extends AbstractEntity {
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
-                ", id='" + getId() + "}";
+                ", id='" + id + "}";
     }
 }

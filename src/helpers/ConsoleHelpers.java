@@ -31,8 +31,18 @@ public class ConsoleHelpers implements Helpers {
         write.writer("2 - History(file)");
         write.writer("3 - History operation(List)");
         write.writer("4 - History users(List)");
-        write.writer("5 - Logout");
-        write.writer("6 - Exit.");
+        write.writer("5 - Work with BD");
+        write.writer("6 - Logout");
+        write.writer("7 - Exit.");
+    }
+
+    @Override
+    public void consoleMenuHelperJBDC() {
+        write.writer("Enter the operation number:");
+        write.writer("1 - History");
+        write.writer("2 - Find operation");
+        write.writer("3 - Delete operation");
+
     }
 
 

@@ -1,6 +1,7 @@
 package entity;
 
-public class Operation extends AbstractEntity {
+public class Operation {
+    private int id;
     private final double number1;
     private final double number2;
     private final String operationNumber;
@@ -13,19 +14,18 @@ public class Operation extends AbstractEntity {
         this.operationNumber = operation;
     }
 
+    public Operation(int id, double number1, double number2, double result, String operationNumber) {
+        this.id = id;
+        this.number1 = number1;
+        this.number2 = number2;
+        this.operationNumber = operationNumber;
+        this.result = result;
+    }
+
     public User getOwner() {
         return owner;
     }
 
-    @Override
-    public long getId() {
-        return super.getId();
-    }
-
-    @Override
-    public void setId(long id) {
-        super.setId(id);
-    }
 
     public double getNumber1() {
         return number1;
@@ -40,6 +40,18 @@ public class Operation extends AbstractEntity {
         this.result = result;
     }
 
+    public double getResult() {
+        return result;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getOperationNumber() {
         return operationNumber;
     }
@@ -50,7 +62,7 @@ public class Operation extends AbstractEntity {
                 "number1=" + number1 +
                 ", number2=" + number2 +
                 ", result=" + result +
-                ", id=" + getId() +
+                ", id=" + id +
                 '}';
     }
 }

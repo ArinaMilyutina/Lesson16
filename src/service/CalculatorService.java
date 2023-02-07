@@ -3,6 +3,7 @@ package service;
 import entity.Operation;
 import storage.FileStorage;
 import storage.InMemoryOperationStorage;
+import storage.JBDCOperationStorage;
 import storage.OperationStorage;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.Optional;
 public class CalculatorService {
     private final InMemoryOperationStorage storageList = new InMemoryOperationStorage();
     private final OperationStorage storageFile = new FileStorage();
+    private final OperationStorage storageJBDC = new JBDCOperationStorage();
 
     public Optional<Operation> calculate(Operation operation) {
         switch (operation.getOperationNumber()) {
@@ -18,24 +20,28 @@ public class CalculatorService {
                 operation.setResult(sum(operation.getNumber1(), operation.getNumber2()));
                 storageList.saveOperation(operation);
                 storageFile.saveOperation(operation);
+                storageJBDC.saveOperation(operation);
                 return Optional.of(operation);
             }
             case "2" -> {
                 operation.setResult(div(operation.getNumber1(), operation.getNumber2()));
                 storageList.saveOperation(operation);
                 storageFile.saveOperation(operation);
+                storageJBDC.saveOperation(operation);
                 return Optional.of(operation);
             }
             case "3" -> {
                 operation.setResult(mul(operation.getNumber1(), operation.getNumber2()));
                 storageList.saveOperation(operation);
                 storageFile.saveOperation(operation);
+                storageJBDC.saveOperation(operation);
                 return Optional.of(operation);
             }
             case "4" -> {
                 operation.setResult(res(operation.getNumber1(), operation.getNumber2()));
                 storageList.saveOperation(operation);
                 storageFile.saveOperation(operation);
+                storageJBDC.saveOperation(operation);
                 return Optional.of(operation);
             }
         }

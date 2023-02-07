@@ -16,5 +16,10 @@ public class ConsoleReader implements Reader {
         return scan.next();
     }
 
+    @Override
+    public int readInt() {
+        return scan.nextInt();
+    }
+
 
 }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InMemoryOperationStorage implements OperationStorage {
-    private long ids = 1;
+    private int ids = 1;
     private final List<Operation> operationList = new ArrayList<>();
 
 

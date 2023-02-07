@@ -7,4 +7,6 @@ public interface Helpers {
 
     void consoleMenuHelper();
 
+    void consoleMenuHelperJBDC();
+
 }

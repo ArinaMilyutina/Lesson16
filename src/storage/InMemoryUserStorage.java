@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class InMemoryUserStorage implements UserStorage {
 
-    private long incId = 1;
+    private int incId = 1;
 
     private final List<User> users = new ArrayList<>();
 

@@ -11,9 +11,12 @@ import helpers.Helpers;
 import service.CalculatorService;
 import service.UserService;
 import storage.FileStorage;
+import storage.JBDCOperationStorage;
+import storage.OperationStorage;
 
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 
@@ -30,6 +33,7 @@ public class ConsoleApplication implements Application {
     private static final String USERNAME = "^[a-zA-Z]{4,8}$";
     private static final String PASSWORD = "^[0-9]{8}$";
     private static final String NAME = "^[A-Z][a-z]{1,20}$";
+    private final JBDCOperationStorage storageJBDC = new JBDCOperationStorage();
 
 
     public void run() {
@@ -97,25 +101,44 @@ public class ConsoleApplication implements Application {
                         String operation = reader.readString();
                         Operation operations = new Operation(num1, num2, operation);
                         Optional<Operation> result = calculator.calculate(operations);
-                        write.writer("Result = " + result.toString());
+                        write.writer("Result = " + operations.getResult());
                         continue;
                     case "2":
-                        fileOperationStorage.readFromFile();
+                        fileOperationStorage.findAll();
                         continue;
+
                     case "3": {
                         List<Operation> operations1 = calculator.showOperation();
                         operations1.forEach((o) -> write.writer(o.toString()));
                         continue;
                     }
-                    case "4":
+                    case "4": {
                         List<User> users = userService.showUsers();
                         users.forEach((u) -> write.writer(u.toString()));
                         continue;
-
-                    case "5":
+                    }
+                    case "5": {
+                        helpers.consoleMenuHelperJBDC();
+                        String number = reader.readString();
+                        if (number.equals("1")) {
+                            storageJBDC.findAll();
+                        }
+                        if (number.equals("2")) {
+                            write.writer("Enter the number operation:");
+                            int id = reader.readInt();
+                            storageJBDC.findById(id);
+                        }
+                        if (number.equals("3")) {
+                            write.writer("Enter the number operation:");
+                            int id = reader.readInt();
+                            storageJBDC.deleteById(id);
+                        }
+                        continue;
+                    }
+                    case "6":
                         consoleSession = null;
                         continue;
-                    case "6":
+                    case "7":
                         return;
                 }
             }

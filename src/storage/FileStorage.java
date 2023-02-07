@@ -7,9 +7,12 @@ import entity.Operation;
 import entity.User;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FileStorage implements OperationStorage, UserStorage {
     private final Writer writer = new ConsoleWriter();
+
 
     public void checkFile() {
         File file = new File("storage.txt");
@@ -39,7 +42,8 @@ public class FileStorage implements OperationStorage, UserStorage {
 
     }
 
-    public void readFromFile() {
+    @Override
+    public List<Operation> findAll() {
         Runnable runnable = () -> {
             try {
                 BufferedReader bufferedReader = new BufferedReader(new FileReader("storage.txt"));
@@ -53,6 +57,7 @@ public class FileStorage implements OperationStorage, UserStorage {
         };
         Thread thread = new Thread(runnable);
         thread.start();
+        return new ArrayList<>();
     }
 
 
